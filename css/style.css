@@ -24,6 +24,13 @@ p {
 h1 {
 	font-size: 220%;
 }
+li {
+    font-size: 140%;
+}
+
+li span {
+    font-size: 140%;
+}
 
 body {
 	font-family: Times-New-Roman;
@@ -61,7 +68,7 @@ body {
 	padding-bottom: 1em;
 }
 
-.container .part2{
+.container .data{
 	text-align: center;
 	margin: 1.5em auto;
 	background: #ffffff;
