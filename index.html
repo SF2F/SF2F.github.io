@@ -178,23 +178,23 @@ The input audio can be played in the browser (tested on Chrome and HTML5).
 <table id="figure-1" border="0" align="center">
   <tbody>
     <tr align="center">
-      <td>&nbsp;</td>
+      <td width="50">&nbsp;</td>
       <td><strong>Ground Truth<br />
           (for reference)</strong></td>
       <td><strong>SF2F<br /></strong></td>
       <td><strong>voice2face<br /></strong></td>
-      <td width="25">&nbsp;</td>
+      <td width="50">&nbsp;</td>
       <td><strong>Ground Truth<br />
         (for reference)</strong></td>
       <td><strong>SF2F<br /></strong></td>
       <td><strong>voice2face<br /></strong></td>
     </tr>
     <tr>
-      <td>&nbsp;</td>
+      <td style="text-align: center;">(a)</td>
       <td><img src="examples/mid/Aarti_Chhabria/gt.jpg" width="145" /></td>
       <td><img src="examples/mid/Aarti_Chhabria/gen.png" width="145" /></td>
       <td><img src="examples/mid/Aarti_Chhabria/v2f.png" width="145" /></td>
-      <td>&nbsp;</td>
+      <td style="text-align: right;">(e)</td>
       <td><img src="examples/mid/Adam_Senn/gt.jpg" width="145" /></td>
       <td><img src="examples/mid/Adam_Senn/gen.png" width="145" /></td>
       <td><img src="examples/mid/Adam_Senn/v2f.png" width="145" /></td>
@@ -223,11 +223,11 @@ The input audio can be played in the browser (tested on Chrome and HTML5).
       <td>&nbsp;</td>
     </tr>
     <tr>
-      <td>&nbsp;</td>
+      <td style="text-align: center;">(b)</td>
       <td><img src="examples/mid/Alaina_Huffman/gt.jpg" width="145" /></td>
       <td><img src="examples/mid/Alaina_Huffman/gen.png" width="145" /></td>
       <td><img src="examples/mid/Alaina_Huffman/v2f.png" width="145" /></td>
-      <td>&nbsp;</td>
+      <td  style="text-align: right;">(f)</td>
       <td><img src="examples/mid/Annet_Mahendru/gt.jpg" width="145" /></td>
       <td><img src="examples/mid/Annet_Mahendru/gen.png" width="145" /></td>
       <td><img src="examples/mid/Annet_Mahendru/v2f.png" width="145" /></td>
@@ -256,11 +256,11 @@ The input audio can be played in the browser (tested on Chrome and HTML5).
       <td>&nbsp;</td>
     </tr>
     <tr>
-      <td>&nbsp;</td>
+      <td style="text-align: center;">(c)</td>
       <td><img src="examples/mid/Dean_Morgan/gt.jpg" width="145" /></td>
       <td><img src="examples/mid/Dean_Morgan/gen.png" width="145" /></td>
       <td><img src="examples/mid/Dean_Morgan/v2f.png" width="145" /></td>
-      <td>&nbsp;</td>
+      <td style="text-align: right;">(g)</td>
       <td><img src="examples/mid/Diego_Botto/gt.jpg" width="145" /></td>
       <td><img src="examples/mid/Diego_Botto/gen.png" width="145" /></td>
       <td><img src="examples/mid/Diego_Botto/v2f.png" width="145" /></td>
@@ -289,11 +289,11 @@ The input audio can be played in the browser (tested on Chrome and HTML5).
       <td>&nbsp;</td>
     </tr>
     <tr>
-      <td>&nbsp;</td>
+      <td style="text-align: center;">(d)</td>
       <td><img src="examples/mid/Apolo_Ohno/gt.jpg" width="145" /></td>
       <td><img src="examples/mid/Apolo_Ohno/gen.png" width="145" /></td>
       <td><img src="examples/mid/Apolo_Ohno/v2f.png" width="145" /></td>
-      <td>&nbsp;</td>
+      <td style="text-align: right;">(h)</td>
       <td><img src="examples/mid/Ashley_Tisdale/gt.jpg" width="145" /></td>
       <td><img src="examples/mid/Ashley_Tisdale/gen.png" width="145" /></td>
       <td><img src="examples/mid/Ashley_Tisdale/v2f.png" width="145" /></td>
@@ -648,13 +648,24 @@ illumination change;</li>
   </div>
 </p>
 
-<h3>4.3 Complexity Analysis</h3>
+<h3>4.3 Discriminators</h3>
 <p>
-  Shown in Table <a href="#table-4" style="color: red; text-decoration: none;">4</a>
+  The network structure of image discriminator Dreal and identity classifier Did is described in Table
+  6. Both networks are convolutional neural networks, followed by fully connected networks. In Table
+  6, we demonstrate the structure of discriminators for 64 × 64 images, and the discriminator of 128 × 128
+  images can be simply implemented by adding another convolution layer before average pooling layer.
+</p>
+<p>
+  Table 6.
+</p>
+
+<h3>4.4 Complexity Analysis of SF2F model</h3>
+<p>
+  Shown in Table <a href="#table-7" style="color: red; text-decoration: none;">7</a>
   is the time and space complexity of each component of SF2F model, where <i>t</i> stands
   for the length of the input audio and <i>w</i> stands for the width of the output face image.
-  Convolution and attention have time complexity &Omega;(1) regardless of input length.
-  1D convolution has space complexity <i>O(t)</i> and self attention has space complexity <i>O(t<sup>2</sup>)</i>.
+  The time complexity of convolution and attention is &Omega;(1) regardless of the input length.
+  The space complexity of 1D convolution is <i>O(t)</i> and space complexity of attention is <i>O(t<sup>2</sup>)</i>.
 </p>
 <p>
   <div id="table-4" style="width: 600px; height: 170px; margin: 0 auto;">
@@ -667,12 +678,76 @@ illumination change;</li>
 <h2><a id="imple"></a>
   5 Implementation Details
 </h2>
+<h3>5.1 Training</h3>
 <p>
   The hyperparameters used during SF2F’s model training is summarized in Table
   <a href="#table-5" style="color: red; text-decoration: none;">5</a>.
   The configuration of SF2F's network is detailedly introducted in Section 4 and
   the main paper.
 </p>
+<p>
+  We train all our SF2F models on 1 NVIDIA V100 GPU with 32 GB memory; SF2F is implemented
+  with PyTorch [<a href="#reference" style="color: green; text-decoration: none;">15</a>].
+  The encoder-decoder training takes 120,000 iterations, and the fuser training
+  takes 360 iterations. The training of 64 × 64 models takes about 18 hours,
+  and the training of 128 × 128 models takes about 32 hours. The model is trained only once in each experiment.
+</p>
+
+<h3>5.2 Evaluation</h3>
+<p>
+  Evaluation is conducted on the same GPU machine. The details of the implementation
+  are provided in this part of the section.
+</p>
+<p>
+  <b>Ground Truth Embedding Matrix.</b> As mentioned in the main paper, the ground truth embedding
+  matrix U = {u1, u2, . . . , uN } extracted by FaceNet [16] is used for similarity metric and retrieval
+  metric. Given that one identity is often associated with multiple, i.e., K, face images in both datasets,
+  for an identity of index n, the ground truth embedding is computed by un = 􏰀Kj=1 unj/K. The
+  embedding un is normalized as un = un , because the embeddings extracted by FaceNet
+  are also L2 normalized. Building embedding matrix with all the image data helps remove variance in
+  data. This makes the evaluation results fair and stable.
+</p>
+<p>
+  <b>Evaluation Runs.</b> In each experiment, we randomly crop 10 pieces of audio with desired length
+  for each identity in the evaluation dataset. With the data above, each experiment is evaluated ten
+  times, the mean of each metric is calculated based on the outcomes of all these ten evaluation runs.
+  We additionally report the variance of VGGFace Score.
+</p>
+
+<h3>5.3 Hyperparameter</h3>
+<p>
+  The hyperparameters for SF2F’s model training are listed in Table 8. The detailed configuration of
+  SF2F’s network is available in Section 4 as well as the main paper.
+</p>
+<p>
+  Hyperparameters are carefully tuned. As the training is time-consuming and the hyperparameter
+  space is large, it is difficult to apply grid search directly. We adopt other methods for parameter
+  tuning instead.
+</p>
+<p>
+  We first train a SF2F model with λ1, λ2, λ3 = 1 and λ4 = 0, we adjust the parameters λ1 and λ3 and
+  find that increasing the Image Reconstruction Loss weight λ1 and decreasing the Auxiliary Classifier
+  Loss weight λ3 both improve the model performance. We adjust λ1 and λ3 gradually and find out
+  the model achieves the best performance when λ1 = 10 and λ3 = 0.05 . Afterward, we apply
+  Perceptual Loss to our model training with initial weight λ4 = 1. We find increasing λ4 improves
+  SF2F’s performance, which is because the original scale of Perceptual Loss is much smaller than the
+  scale of the other three losses. We gradually increase λ4 until we observe SF2F achieving the best
+  performance when λ4 = 100. Therefore, λ1 , λ2 , λ3 , λ4 are set at 10, 1, 0.05 and 100, respectively.
+</p>
+<p>
+  Afterwards, we apply a grid search over learning rate and batch size. We test with different values,
+  which are listed in Table 9 with optimal values singled out in the last column.
+</p>
+<p>
+  The hyperparameters above are determined by tuning a 64 × 64 SF2F model with HQ-VoxCeleb
+  dataset, and we find this hyperparameter configuration works well with 128 × 128 SF2F model.
+  With this hyperparameter configuration, SF2F outperforms voice2face on filtered VGGFace dataset.
+</p>
+<p>
+  Consequently, we opt to skip further hyperparameter tuning on filtered VGGFace. The total cost of
+  hyperparameter tuning is around 558 GPU hours on V100.
+</p>
+
 <p>
   <div id="table-5" style="width: 300px; height: 300px; margin: 0 auto;">
     <img src="./figures/table-5.png" width="300"/>
