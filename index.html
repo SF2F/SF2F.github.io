@@ -39,7 +39,7 @@ The input audio can be played in the browser (tested on Chrome and HTML5).
     <li><a href="#teaser">Teaser</a></li>
     <li><a href="#results">Qualitative Results</a></li>
     <li><a href="#data-quality">Data Quality Enhancement</a></li>
-    <li><a href="#ablation">Ablation Study</a></li>
+    <li><a href="#ablation">Additional Experimental Results</a></li>
     <li><a href="#model">Model Details</a></li>
     <li><a href="#imple">Implementation Details</a></li>
     <li><a href="#reference">References</a></li>
@@ -326,7 +326,8 @@ The input audio can be played in the browser (tested on Chrome and HTML5).
 <p style="text-align: center;">
   Figure 1: Examples of 128 × 128 generated images using SF2F and voice2face.
 </p>
-
+<p><a href="#">To the top.</a></p>
+<p>&nbsp;</p>
 
 <h2><a id="data-quality"></a>
   2 Data Quality Enhancement
@@ -578,6 +579,8 @@ illumination change;</li>
     <img src="./figures/table-1.png" width="750"/>
   </div>
 </p>
+<p><a href="#">To the top.</a></p>
+<p>&nbsp;</p>
 
 <!-- Ablation Study -->
 <h2><a id="ablation"></a>
@@ -628,8 +631,8 @@ illumination change;</li>
     <img src="./figures/table-3.png" width="800"/>
   </div>
 </p>
-
-
+<p><a href="#">To the top.</a></p>
+<p>&nbsp;</p>
 
 <!-- Model Details -->
 <h2><a id="model"></a>
@@ -691,7 +694,7 @@ illumination change;</li>
 
 <h3>4.3 Discriminators</h3>
 <p>
-  The network structure of image discriminator Dreal and identity classifier Did is described in Table
+  The network structure of image discriminator <i>D<sub>real</sub></i> and identity classifier <i>D<sub>id</sub></i> is described in Table
   <a href="#table-6" style="color: red; text-decoration: none;">6</a>. Both networks are convolutional neural networks, followed by fully connected networks. In Table
   <a href="#table-6" style="color: red; text-decoration: none;">6</a>, we demonstrate the structure of discriminators for 64 × 64 images, and the discriminator of 128 × 128
   images can be simply implemented by adding another convolution layer before average pooling layer.
@@ -715,6 +718,8 @@ illumination change;</li>
     <img src="./figures/table-7.png" width="550"/>
   </div>
 </p>
+<p><a href="#">To the top.</a></p>
+<p>&nbsp;</p>
 
 
 <!-- Implementation Details -->
@@ -737,10 +742,10 @@ illumination change;</li>
 </p>
 <p>
   <b>Ground Truth Embedding Matrix.</b> As mentioned in the main paper, the ground truth embedding
-  matrix U = {u1, u2, . . . , uN } extracted by FaceNet [<a href="#reference" style="color: green; text-decoration: none;">16</a>] is used for similarity metric and retrieval
-  metric. Given that one identity is often associated with multiple, i.e., K, face images in both datasets,
-  for an identity of index n, the ground truth embedding is computed by un = 􏰀Kj=1 unj/K. The
-  embedding un is normalized as un = un , because the embeddings extracted by FaceNet
+  matrix `U = {u_1, u_2, ..., u_N}` extracted by FaceNet [<a href="#reference" style="color: green; text-decoration: none;">16</a>] is used for similarity metric and retrieval
+  metric. Given that one identity is often associated with multiple, i.e., <i>K</i>, face images in both datasets,
+  for an identity of index <i>n</i>, the ground truth embedding is computed by `sum_(j=1)^K u_(nj)/K`. The
+  embedding `u_n` is normalized as `u_n = frac{u_n}{max(||u_n||_2, &#949;)}` , because the embeddings extracted by FaceNet
   are also L2 normalized. Building embedding matrix with all the image data helps remove variance in
   data. This makes the evaluation results fair and stable.
 </p>
@@ -793,6 +798,8 @@ illumination change;</li>
 <p>
   Consequently, we opt to skip further hyperparameter tuning on filtered VGGFace. The total cost of hyperparameter tuning is around 558 GPU hours on V100.
 </p>
+<p><a href="#">To the top.</a></p>
+<p>&nbsp;</p>
 
 
 <h2>References</h2>
@@ -888,4 +895,5 @@ illumination change;</li>
 
 
 <!--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=--->
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=AM_HTMLorMML-full"></script>
 </html>
